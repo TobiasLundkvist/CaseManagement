@@ -2,8 +2,10 @@
 
 public class ErrorReportMenuService
 {
-    public void ErrorReportMenu()
+    public async Task ErrorReportMenu()
     {
+        var errorReport = new AddErrorReportService();
+
         while (true)
         {
             Console.Clear();
@@ -19,15 +21,15 @@ public class ErrorReportMenuService
             switch (answer)
             {
                 case "1":
-                    Console.WriteLine("skapa");
+                    await errorReport.CreateErrorReportAsync();
                     break;
 
                 case "2":
-                    Console.WriteLine("Visa alla");
+                    await errorReport.ListAllErrorReportsAsync();
                     break;
 
                 case "3":
-                    Console.WriteLine("Visa en");
+                    await errorReport.GetOneErrorReportAsync();
                     break;
 
                 case "4":
