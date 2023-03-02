@@ -13,9 +13,8 @@ public class MemberMenuService
             Console.WriteLine("1. Skapa en hyregäst ");
             Console.WriteLine("2. Visa alla hyresgäster ");
             Console.WriteLine("3. Visa en hyresgäst ");
-            Console.WriteLine("4. Uppdatera en hyresgäst ");
-            Console.WriteLine("5. Ta bort en hyresgäst");
-            Console.WriteLine("6. Återgå till huvudmenyn");
+            Console.WriteLine("4. Ta bort en hyresgäst");
+            Console.WriteLine("5. Återgå till huvudmenyn");
 
             string answer = Console.ReadLine() ?? "";
 
@@ -38,19 +37,14 @@ public class MemberMenuService
 
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("Uppdatera en");
-                    break;
-
-                case "5":
-                    Console.Clear();
                     await addMember.DeleteMemberAsync();
                     break;
 
                 default:
-                    Console.WriteLine("Välj mellan alternativ 1-6: ");
+                    Console.WriteLine("Välj mellan alternativ 1-5: ");
                     break;
             }
-            if(answer == "6")
+            if(answer == "5")
             {
                 break;
             }

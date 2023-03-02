@@ -84,4 +84,29 @@ public class AddErrorReportService
             Console.WriteLine("");
         }
     }
+
+    public async Task UpdateErrorReportAsync()
+    {
+        Console.Clear();
+        Console.WriteLine("Ange Felanmälningsnumret: ");
+        var answer = Console.ReadLine();
+        int id;
+
+        if (int.TryParse(answer, out id))
+        {
+            var errorReport = await ErrorReportServiceDB.GetErrorReportAsync(id);
+
+            Console.WriteLine("Ändra status på felanmälning (Pågående/Avslutad): ");
+            errorReport.ErrorReportStatus = Console.ReadLine();
+
+            await ErrorReportServiceDB.UpdateErrorReportAsync(errorReport);
+        }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine($"Finns ingen felanmälan med felanmälningsnummer: {id}");
+            Console.WriteLine("");
+        }
+        
+    }
 }

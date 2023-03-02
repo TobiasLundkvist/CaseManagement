@@ -62,6 +62,7 @@ internal class AddMemberService
     public async Task GetOneMemberAsync()
     {
         Console.WriteLine("Ange E-postadressen på hyresgästen: ");
+        Console.WriteLine("");
         var email = Console.ReadLine();
 
         if(email != null)
@@ -69,6 +70,7 @@ internal class AddMemberService
             var member = await MemberServiceDB.GetMemberAsync(email);
             if (member != null)
             {
+                Console.Clear();
                 Console.WriteLine($"Kundnummer: {member.Id}");
                 Console.WriteLine($"Namn: {member.FirstName} {member.LastName}");
                 Console.WriteLine($"E-postadress: {member.Email}");

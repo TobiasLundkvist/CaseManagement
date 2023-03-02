@@ -9,8 +9,8 @@ while(true)
     Console.WriteLine("");
     Console.WriteLine("Välkommen till BRF EC Utbildning Ärendehanteringssystem");
     Console.WriteLine("");
-    Console.WriteLine("1. Skapa en felanmälan ");
-    Console.WriteLine("2. Skapa en ny hyresgäst");
+    Console.WriteLine("1. FELANMÄLNINGAR ");
+    Console.WriteLine("2. HYRESGÄSTER");
     Console.WriteLine("");
     Console.WriteLine("Välj ett av ovan allternativ (1-2): ");
 
@@ -18,7 +18,7 @@ while(true)
     {
         case "1":
             Console.Clear();
-            errorReportMenu.ErrorReportMenu();
+            await errorReportMenu.ErrorReportMenu();
             break;
 
         case "2":

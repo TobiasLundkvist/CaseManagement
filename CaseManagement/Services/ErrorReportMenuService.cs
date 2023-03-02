@@ -33,7 +33,7 @@ public class ErrorReportMenuService
                     break;
 
                 case "4":
-                    Console.WriteLine("Uppdatera en");
+                    await errorReport.UpdateErrorReportAsync();
                     break;
 
                 case "5":

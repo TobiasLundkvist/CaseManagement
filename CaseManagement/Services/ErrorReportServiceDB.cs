@@ -80,7 +80,20 @@ internal class ErrorReportServiceDB
         }
         else
             return null!;
-    } 
+    }
+    
+    public static async Task UpdateErrorReportAsync(ErrorReportModel errorReportModel)
+    {
+        var errorReport = await _dataContext.ErrorReports.Include(x => x.Member).FirstOrDefaultAsync(x => x.ErrorReportId == errorReportModel.Id);
+        if (errorReport != null)
+        {
+            if(!string.IsNullOrEmpty(errorReport.ErrorReportStatus))
+                errorReport.ErrorReportStatus = errorReportModel.ErrorReportStatus;
+
+            _dataContext.Update(errorReport);
+            await _dataContext.SaveChangesAsync();
+        }
+    }
 }
 
 
