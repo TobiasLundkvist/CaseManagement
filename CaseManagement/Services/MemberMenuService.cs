@@ -23,25 +23,30 @@ public class MemberMenuService
                 case "1":
                     Console.Clear();
                     await addMember.CreateMemberAsync();
+                    Console.WriteLine("Tryck på valfri knapp för att fortsätta...");
                     break;
 
                 case "2":
                     Console.Clear();
                     await addMember.ListAllMembersAsync();
+                    Console.WriteLine("Tryck på valfri knapp för att fortsätta...");
                     break;
 
                 case "3":
                     Console.Clear();
                     await addMember.GetOneMemberAsync();
+                    Console.WriteLine("Tryck på valfri knapp för att fortsätta...");
                     break;
 
                 case "4":
                     Console.Clear();
                     await addMember.DeleteMemberAsync();
+                    Console.WriteLine("Tryck på valfri knapp för att fortsätta...");
                     break;
 
                 default:
                     Console.WriteLine("Välj mellan alternativ 1-5: ");
+                    Console.WriteLine("Tryck på valfri knapp för att fortsätta...");
                     break;
             }
             if(answer == "5")

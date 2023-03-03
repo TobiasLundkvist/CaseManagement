@@ -8,28 +8,28 @@ internal class AddMemberService
     {
         var member = new MemberModel();
 
-        Console.WriteLine("Förnamn: ");
+        Console.Write("Förnamn: ");
         member.FirstName = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Efternamn: ");
+        Console.Write("Efternamn: ");
         member.LastName = Console.ReadLine() ?? "";
 
-        Console.WriteLine("E-postadress: ");
+        Console.Write("E-postadress: ");
         member.Email = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Mobilnummer: ");
+        Console.Write("Mobilnummer: ");
         member.Phone = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Gatuadress: ");
+        Console.Write("Gatuadress: ");
         member.StreetName = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Gatunummer: ");
+        Console.Write("Gatunummer: ");
         member.StreetNumber = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Postnummer: ");
+        Console.Write("Postnummer: ");
         member.PostalCode = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Stad: ");
+        Console.Write("Stad: ");
         member.City = Console.ReadLine() ?? "";
 
         await MemberServiceDB.SaveMemberAsync(member);
@@ -48,7 +48,7 @@ internal class AddMemberService
                 Console.WriteLine($"E-postadress: {member.Email}");
                 Console.WriteLine($"Mobilnummer: {member.Phone}");
                 Console.WriteLine($"Address: {member.StreetName} {member.StreetNumber}, {member.PostalCode} {member.City}");
-                Console.WriteLine("");
+                Console.WriteLine("\n-----------------------------------------------------------------------------------------\n");
             }
         }
         else

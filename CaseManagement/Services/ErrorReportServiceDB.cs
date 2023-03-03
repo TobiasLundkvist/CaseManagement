@@ -26,15 +26,16 @@ internal class ErrorReportServiceDB
         if(memberEntity != null)
         {
             errorReportEntity.MemberId = memberEntity.MemberId;
+
+            _dataContext.Add(errorReportEntity);
+            await _dataContext.SaveChangesAsync();
         }
         else
         {
             Console.Clear();
-            Console.WriteLine($"Finns ingen med E-postadress: {errorReportModel.Email}. \nVänligen ange en befintlig E-postadress eller lägg till en ny hyresgäst! ");
+            Console.WriteLine("");
+            Console.WriteLine($"Finns ingen med E-postadress: {errorReportModel.Email}. \nVänligen ange en befintlig E-postadress eller lägg till ny medlem i föreningen! ");
         }
-
-        _dataContext.Add(errorReportEntity);
-        await _dataContext.SaveChangesAsync();
     }
 
     public static async Task<IEnumerable<ErrorReportModel>> GetAllErrorReportsAsync()
@@ -91,6 +92,16 @@ internal class ErrorReportServiceDB
                 errorReport.ErrorReportStatus = errorReportModel.ErrorReportStatus;
 
             _dataContext.Update(errorReport);
+            await _dataContext.SaveChangesAsync();
+        }
+    }
+
+    public static async Task DeleteErrorReportAsync(int id)
+    {
+        var errorReport = await _dataContext.ErrorReports.Include(x => x.Member).FirstOrDefaultAsync(x => x.ErrorReportId == id);
+        if (errorReport != null)
+        {
+            _dataContext.Remove(errorReport);
             await _dataContext.SaveChangesAsync();
         }
     }

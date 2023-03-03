@@ -33,7 +33,7 @@ public class AddErrorReportService
                 Console.WriteLine($"Datum för felanmälan: {errorReport.ErrorReportDate}");
                 Console.WriteLine($"\nFelanmälan:\n{errorReport.ErrorReportDescription}\n");
                 Console.WriteLine($"Återkoppla till hyresgäst senast: {errorReport.ErrorReportDueDate}");
-                Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus}");
+                Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus.ToUpper()}");
                 Console.WriteLine($"\nFelanmälan är gjord av: {errorReport.FirstName} {errorReport.LastName}");
                 Console.WriteLine($"E-postadress: {errorReport.Email}");
                 Console.WriteLine($"Mobilnummer: {errorReport.Phone}");
@@ -59,16 +59,16 @@ public class AddErrorReportService
             var errorReport = await ErrorReportServiceDB.GetErrorReportAsync(id);
             if (errorReport != null)
             {
+                Console.Clear();
                 Console.WriteLine($"Felanmälningsnummer: {errorReport.Id}");
                 Console.WriteLine($"Datum för felanmälan: {errorReport.ErrorReportDate}");
                 Console.WriteLine($"\nFelanmälan:\n{errorReport.ErrorReportDescription}\n");
                 Console.WriteLine($"Återkoppla till hyresgäst senast: {errorReport.ErrorReportDueDate}");
-                Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus}");
+                Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus.ToUpper()}");
                 Console.WriteLine($"\nFelanmälan är gjord av: {errorReport.FirstName} {errorReport.LastName}");
                 Console.WriteLine($"E-postadress: {errorReport.Email}");
                 Console.WriteLine($"Mobilnummer: {errorReport.Phone}");
                 Console.WriteLine("\n-----------------------------------------------------------------------------------------\n");
-                Console.ReadKey();
             }
             else
             {
@@ -93,19 +93,41 @@ public class AddErrorReportService
         int id;
 
         if (int.TryParse(answer, out id))
-        {
+        {   
             var errorReport = await ErrorReportServiceDB.GetErrorReportAsync(id);
 
-            Console.WriteLine("Ändra status på felanmälning (Pågående/Avslutad): ");
-            errorReport.ErrorReportStatus = Console.ReadLine();
+            if(errorReport != null)
+            {
+                Console.Clear();
+                Console.WriteLine($"\nFelanmälan är gjord av: {errorReport.FirstName} {errorReport.LastName}");
+                Console.WriteLine($"E-postadress: {errorReport.Email}");
+                Console.WriteLine($"Mobilnummer: {errorReport.Phone}");
 
-            await ErrorReportServiceDB.UpdateErrorReportAsync(errorReport);
+                Console.WriteLine($"\nFelanmälningsnummer: {errorReport.Id}");
+                Console.WriteLine($"Datum för felanmälan: {errorReport.ErrorReportDate}");
+                Console.WriteLine($"\nFelanmälan:\n{errorReport.ErrorReportDescription}\n");
+                Console.WriteLine($"Återkoppla till hyresgäst senast: {errorReport.ErrorReportDueDate}");
+                Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus.ToUpper()}");
+                Console.WriteLine("Ändra status på felanmälning (Pågående/Avslutad): ");
+                errorReport.ErrorReportStatus = Console.ReadLine() ?? "";
+                if(errorReport.ErrorReportStatus == "Avslutad")
+                {
+                    await ErrorReportServiceDB.DeleteErrorReportAsync(id);
+                }
+               await ErrorReportServiceDB.UpdateErrorReportAsync(errorReport);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine($"Finns ingen felanmälan med felanmälningsnummer: {id}");
+            }
         }
         else
         {
             Console.Clear();
-            Console.WriteLine($"Finns ingen felanmälan med felanmälningsnummer: {id}");
             Console.WriteLine("");
+            Console.WriteLine("Något gick fel... Fyll i ett korrekt felanmälningsnummer");
         }
         
     }
