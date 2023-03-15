@@ -27,4 +27,6 @@ internal class ErrorReportEntity
     public int MemberId { get; set; }
     public MemberEntity Member { get; set; } = null!;
 
+    //Relation to ErrorReportComment
+    public ICollection<ErrorReportCommentEntity> errorReportComments = new HashSet<ErrorReportCommentEntity>();
 }

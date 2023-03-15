@@ -26,4 +26,5 @@ internal class DataContext : DbContext
     public DbSet<AddressEntity> Addresses { get; set; } = null!;
     public DbSet<MemberEntity> Members { get; set; } = null!;
     public DbSet<ErrorReportEntity> ErrorReports { get; set; } = null!;
+    public DbSet<ErrorReportCommentEntity> ErrorReportsComments { get; set; } = null!;
 }
