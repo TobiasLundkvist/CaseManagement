@@ -14,7 +14,6 @@ internal class ErrorCommentServiceDB
     {
         var errorReportCommentEntity = new ErrorReportCommentEntity
         {
-            //ErrorReportCommentId = errorReportCommentModel.Id,
             ErrorReportCommentDate = errorReportCommentModel.ErrorReportCommentDate,
             ErrorReportComment = errorReportCommentModel.ErrorReportDescription,
         };
@@ -39,13 +38,16 @@ internal class ErrorCommentServiceDB
     {
         var errorReportComments = new List<ErrorReportCommentModel>();
 
-        foreach (var errorReportComment in await _dataContext.ErrorReportsComments.Include(x => x.ErrorReport).ToListAsync())
+        foreach (var errorReportComment in await _dataContext.ErrorReportsComments.Include(x => x.ErrorReport).ThenInclude(x => x.Member).ToListAsync())
             errorReportComments.Add(new ErrorReportCommentModel
             {
                 ErrorReportDescription = errorReportComment.ErrorReport.ErrorReportDescription,
                 ErrorReportStatus = errorReportComment.ErrorReport.ErrorReportStatus,
+                FirstName = errorReportComment.ErrorReport.Member.FirstName,
+                LastName = errorReportComment.ErrorReport.Member.LastName,
+                Email = errorReportComment.ErrorReport.Member.Email,
 
-                Id = errorReportComment.ErrorReportCommentId,
+                Id = errorReportComment.ErrorReport.ErrorReportId,
                 ErrorReportCommentDate = errorReportComment.ErrorReportCommentDate,
                 ErrorReportComment = errorReportComment.ErrorReportComment
             });
@@ -55,15 +57,18 @@ internal class ErrorCommentServiceDB
     
     public static async Task<ErrorReportCommentModel> GetErrorReportswithComments(int id)
     {
-        var errorReportComment = await _dataContext.ErrorReportsComments.Include(x => x.ErrorReport).FirstOrDefaultAsync(x => x.ErrorReportCommentId == id);
+        var errorReportComment = await _dataContext.ErrorReportsComments.Include(x => x.ErrorReport).ThenInclude(x => x.Member).FirstOrDefaultAsync(x => x.ErrorReportId == id);
         if (errorReportComment != null)
         {
             return new ErrorReportCommentModel
             {
                 ErrorReportDescription = errorReportComment.ErrorReport.ErrorReportDescription,
                 ErrorReportStatus = errorReportComment.ErrorReport.ErrorReportStatus,
+                FirstName = errorReportComment.ErrorReport.Member.FirstName,
+                LastName = errorReportComment.ErrorReport.Member.LastName,
+                Email = errorReportComment.ErrorReport.Member.Email,
 
-                Id = errorReportComment.ErrorReportCommentId,
+                Id = errorReportComment.ErrorReport.ErrorReportId,
                 ErrorReportComment = errorReportComment.ErrorReportComment,
                 ErrorReportCommentDate = errorReportComment.ErrorReportCommentDate
             };

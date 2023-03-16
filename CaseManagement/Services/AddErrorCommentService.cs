@@ -33,7 +33,10 @@ public class AddErrorCommentService
         {
             foreach(var errorReportComment in errorReportComments)
             {
+                Console.WriteLine("FELANMÄLAN");
                 Console.WriteLine($"Felanmälningsnummer: {errorReportComment.Id}");
+                Console.WriteLine($"Skapad av: {errorReportComment.FirstName} {errorReportComment.LastName}");
+                Console.WriteLine($"E-postadress: {errorReportComment.Email}");
                 Console.WriteLine($"Beskrivning av felanmälan: {errorReportComment.ErrorReportDescription}");
                 Console.WriteLine($"Felanmälningsstatus: {errorReportComment.ErrorReportStatus}");
                 Console.WriteLine("");
@@ -62,11 +65,16 @@ public class AddErrorCommentService
             if(errorReportComment != null)
             {
                 Console.Clear();
+                Console.WriteLine("FELANMÄLAN");
                 Console.WriteLine($"Felanmälningsnummer: {errorReportComment.Id}");
-                Console.WriteLine($"När kommentaren är gjord: {errorReportComment.ErrorReportCommentDate}");
-                Console.WriteLine($"Kommentar:");
-                Console.Write($"{errorReportComment.ErrorReportComment}\n");
+                Console.WriteLine($"Skapad av: {errorReportComment.FirstName} {errorReportComment.LastName}");
+                Console.WriteLine($"E-postadress: {errorReportComment.Email}");
+                Console.WriteLine($"Beskrivning av felanmälan: {errorReportComment.ErrorReportDescription}");
+                Console.WriteLine($"Felanmälningsstatus: {errorReportComment.ErrorReportStatus}");
                 Console.WriteLine("");
+                Console.WriteLine($"Kommentaren skapades: {errorReportComment.ErrorReportCommentDate}");
+                Console.WriteLine($"Styrelsens kommentar: {errorReportComment.ErrorReportComment}");
+                Console.WriteLine("\n-----------------------------------------------------------------------------------------\n");
             }
             else
             {

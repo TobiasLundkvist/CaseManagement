@@ -7,4 +7,7 @@ internal class ErrorReportCommentModel
     public DateTime ErrorReportCommentDate { get; set; } = DateTime.Now;
     public string ErrorReportDescription { get; set; } = null!;
     public string ErrorReportStatus { get; set; } = null!;
+    public string FirstName { get; set; } = null!;
+    public string LastName { get; set; } = null!;
+    public string Email { get; set; } = null!;
 }
