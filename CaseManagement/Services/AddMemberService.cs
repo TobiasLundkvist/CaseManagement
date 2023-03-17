@@ -43,7 +43,7 @@ internal class AddMemberService
         {
             foreach (var member in members)
             {
-                Console.WriteLine($"Kundnummer: {member.Id}");
+                Console.WriteLine($"Hyresgästnummer: {member.Id}");
                 Console.WriteLine($"Namn: {member.FirstName} {member.LastName}");
                 Console.WriteLine($"E-postadress: {member.Email}");
                 Console.WriteLine($"Mobilnummer: {member.Phone}");
@@ -71,7 +71,7 @@ internal class AddMemberService
             if (member != null)
             {
                 Console.Clear();
-                Console.WriteLine($"Kundnummer: {member.Id}");
+                Console.WriteLine($"Hyresgästnummer: {member.Id}");
                 Console.WriteLine($"Namn: {member.FirstName} {member.LastName}");
                 Console.WriteLine($"E-postadress: {member.Email}");
                 Console.WriteLine($"Mobilnummer: {member.Phone}");

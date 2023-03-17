@@ -7,7 +7,7 @@ while(true)
 {
     Console.Clear();
     Console.WriteLine("");
-    Console.WriteLine("Välkommen till BRF EC Utbildning Ärendehanteringssystem");
+    Console.WriteLine("Välkommen till BRF EC Utbildning");
     Console.WriteLine("");
     Console.WriteLine("1. FELANMÄLNINGAR ");
     Console.WriteLine("2. HYRESGÄSTER");

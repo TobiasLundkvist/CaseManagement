@@ -34,7 +34,7 @@ public class AddErrorReportService
                 Console.WriteLine($"\nFelanmälan:\n{errorReport.ErrorReportDescription}\n");
                 Console.WriteLine($"Återkoppla till hyresgäst senast: {errorReport.ErrorReportDueDate}");
                 Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus.ToUpper()}");
-                Console.WriteLine($"\nFelanmälan är gjord av: {errorReport.FirstName} {errorReport.LastName}");
+                Console.WriteLine($"\nFelanmälan är skapad av: {errorReport.FirstName} {errorReport.LastName}");
                 Console.WriteLine($"E-postadress: {errorReport.Email}");
                 Console.WriteLine($"Mobilnummer: {errorReport.Phone}");
                 Console.WriteLine("\n-----------------------------------------------------------------------------------------\n");
@@ -65,7 +65,7 @@ public class AddErrorReportService
                 Console.WriteLine($"\nFelanmälan:\n{errorReport.ErrorReportDescription}\n");
                 Console.WriteLine($"Återkoppla till hyresgäst senast: {errorReport.ErrorReportDueDate}");
                 Console.WriteLine($"Status på felanmälan: {errorReport.ErrorReportStatus.ToUpper()}");
-                Console.WriteLine($"\nFelanmälan är gjord av: {errorReport.FirstName} {errorReport.LastName}");
+                Console.WriteLine($"\nFelanmälan är skapad av: {errorReport.FirstName} {errorReport.LastName}");
                 Console.WriteLine($"E-postadress: {errorReport.Email}");
                 Console.WriteLine($"Mobilnummer: {errorReport.Phone}");
                 Console.WriteLine("\n-----------------------------------------------------------------------------------------\n");
